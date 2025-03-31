@@ -33,27 +33,33 @@ function cha() {
             ok.addEventListener("click",_=>{
                 close.addEventListener("click",_=>{
                     input.value = "";
-                    console.log("hello")
                     input.classList.remove("is-valid");
                 })
                 Tesseract.recognize(
                     reader.result,
                     "eng",
-                    { logger: m => console.log(m) }
-                ).then(({ data: { text } }) => {
-                    mainRes.innerHTML = text;
-                    console.log(text);
-                    copy.classList.remove("disabled");
-                    copy.addEventListener("click",_=>{
-                        navigator.clipboard.writeText(mainRes.innerText)
-                        location.reload();
-                    });
-                    close.addEventListener("click",_=>{
-                        input.value = ""
-                        console.log("hello")
-                        location.reload();
-                    })
+                    { logger: m => console.log("Logger ", m) }
+                ).then((data) => {
+                   console.log("first ", data)
                 })
+                // Tesseract.recognize(
+                //     reader.result,
+                //     "eng",
+                //     { logger: m => console.log(m) }
+                // ).then(({ data: { text } }) => {
+                //     mainRes.innerHTML = text;
+                //     console.log(text);
+                //     copy.classList.remove("disabled");
+                //     copy.addEventListener("click",_=>{
+                //         navigator.clipboard.writeText(mainRes.innerText)
+                //         location.reload();
+                //     });
+                //     close.addEventListener("click",_=>{
+                //         input.value = ""
+                //         console.log("hello")
+                //         location.reload();
+                //     })
+                // })
             });
         }, false);
 
