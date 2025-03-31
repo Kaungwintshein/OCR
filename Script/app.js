@@ -38,28 +38,20 @@ function cha() {
                 Tesseract.recognize(
                     reader.result,
                     "eng",
-                    { logger: m => console.log("Logger ", m) }
-                ).then(({text}) => {
-                   console.log("first ", text)
+                    { logger: m => console.log(m) }
+                ).then(({  text } ) => {
+                    mainRes.innerHTML = text;
+                    copy.classList.remove("disabled");
+                    copy.addEventListener("click",_=>{
+                        navigator.clipboard.writeText(mainRes.innerText)
+                        location.reload();
+                    });
+                    close.addEventListener("click",_=>{
+                        input.value = ""
+                        console.log("hello")
+                        location.reload();
+                    })
                 })
-                // Tesseract.recognize(
-                //     reader.result,
-                //     "eng",
-                //     { logger: m => console.log(m) }
-                // ).then(({ data: { text } }) => {
-                //     mainRes.innerHTML = text;
-                //     console.log(text);
-                //     copy.classList.remove("disabled");
-                //     copy.addEventListener("click",_=>{
-                //         navigator.clipboard.writeText(mainRes.innerText)
-                //         location.reload();
-                //     });
-                //     close.addEventListener("click",_=>{
-                //         input.value = ""
-                //         console.log("hello")
-                //         location.reload();
-                //     })
-                // })
             });
         }, false);
 
